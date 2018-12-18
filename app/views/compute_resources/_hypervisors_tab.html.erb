@@ -6,6 +6,9 @@
       <th class="col-md-1"><%= _('Cores') %></th>
       <th class="col-md-1"><%= _('Sockets') %></th>
       <th class="col-md-1"><%= _('Spectre v2') %></th>
+      <% if ForemanWreckingball.with_katello? %>
+        <th>Subscription</th>
+      <% end %>
     </tr>
   </thead>
   <tbody>
@@ -16,6 +19,9 @@
         <td><%= host.vmware_hypervisor_facet.cpu_cores %></td>
         <td><%= host.vmware_hypervisor_facet.cpu_sockets %></td>
         <td><%= wreckingball_spectre_v2_status(host.vmware_hypervisor_facet) %></td>
+        <% if ForemanWreckingball.with_katello? %>
+          <td><%= wreckingball_rhel_subscription_status(host) %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

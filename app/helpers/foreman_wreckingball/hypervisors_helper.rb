@@ -11,5 +11,13 @@ module ForemanWreckingball
         icon_text('error-circle-o', '', kind: 'pficon', title: _('Required CPU features are missing. This host is most likely vulnerable.'))
       end
     end
+
+    def wreckingball_rhel_subscription_status(host)
+      if host.subscription_facet && host.subscription_facet.hypervisor && host.subscriptions.count > 0 && host.subscriptions.map(&:redhat?).all?
+        icon_text('ok', '', kind: 'pficon', title: _('This host has a valid RHEL subscription.'))
+      else
+        icon_text('error-circle-o', '', kind: 'pficon', title: _('This host is not subscribed correctly as a hypervisor.'))
+      end
+    end
   end
 end

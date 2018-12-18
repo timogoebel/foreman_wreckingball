@@ -132,4 +132,11 @@ module ForemanWreckingball
   rescue LoadError
     false
   end
+
+  def self.with_katello?
+    Katello # rubocop:disable Lint/Void
+    true
+  rescue StandardError
+    false
+  end
 end
